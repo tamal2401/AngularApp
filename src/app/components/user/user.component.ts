@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../Models/User';
 
 @Component({
     selector: 'app-user',
@@ -6,41 +7,28 @@ import { Component } from '@angular/core';
     styleUrls: ['./user.component.css']
 })
 
-export class UserComponent{
+export class UserComponent implements OnInit{
+    
     /* declaring the properties & assigning datatypes to those properties */
-    firstName : String;
-    lastName : String;
-    age : Number;
-    address;
-    intArray : Number[];
-    hasGf : Boolean;
+    /* declaring an interface */
+    user : User;
 
     /* decaring constuctor for the class and assigning values to the properties 
     while the class is getting instantiated */
     constructor(){
-        console.log('component has been initialized');
-        this.firstName = 'Tamal';
-        this.lastName = 'Das';
-        this.age = 25;
-        this.address = {
-            streetNo : '5',
-            street :'Selimpur Lane',
-            area : 'Dhakuria',
-            pin : '700031'
+        console.log('Method is instantiated');
+    }
+
+    ngOnInit() {
+        this.user = {
+            firstName : 'Tamal',
+            lastName : 'Das',
+            age : 25,
+            address : {
+                street : 'selimpur lane',
+                city : 'kolkata',
+                pin : 700031
+            }
         }
-        this.intArray = [1,2,3,4,5];
-        this.hasGf = true
-    }
-    //declaring methods of that class
-    method1(){
-        console.log(`First name is ${this.firstName}`);
-    }
-
-    method2(){
-        console.log(`Second name is ${this.lastName}`);
-    }
-
-    showPincode(){
-        return this.address.pin;
     }
 }
