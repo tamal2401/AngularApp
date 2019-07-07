@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../Models/User';
 
 @Component({
@@ -8,9 +8,21 @@ import { User } from '../../Models/User';
 })
 export class UsersComponent implements OnInit {
 
+  user : User = {
+    firstName : '',
+    lastName : '',
+    age : null,
+    email : '',
+  };
+
   users: User[];
   showDetails : boolean;
   loaded : boolean = false;
+  enableAdd : boolean = false;
+  enableButton : {};
+  showextended : {};
+  showUserForm : boolean = false;
+  @ViewChild("userForm") form : any;
 
   constructor() { }
 
@@ -22,41 +34,82 @@ export class UsersComponent implements OnInit {
           firstName: 'Tamal',
           lastName: 'Das',
           age: 25,
-          address: {
-            street: 'Selimpur lane',
-            city: 'kolkata',
-            pin: 700031
-          }
+          email : 'tamal.das@gmail.com',
+          isActive : true,
+          registerd : new Date('12/05/2009 12:25:00'),
+          hide : true,
         },
         {
           firstName: 'Epshita',
           lastName: 'Banerjee',
           age: 22,
-          address: {
-            street: 'Madhyam Gram',
-            city: 'North 24 Paraganas',
-            pin: 700102
-          }
+          email:'epshita.banerjee@gmail.com',
+          isActive : true,
+          registerd : new Date('05/09/2019 05:25:00'),
+          hide : true,
         },
         {
           firstName: 'Susmita',
           lastName: 'Das',
           age: 21,
-          address: {
-            street: 'Selimpur lane',
-            city: 'kolkata',
-            pin: 700031
-          }
+          email : 'susmita.das@gmail.com',
+          isActive : false,
+          hide : true,
+        },
+        {
+          firstName: 'shila',
+          lastName: 'Das',
+          isActive : true,
+          registerd : new Date('12/05/2009 12:25:00'),
+          hide : true,
         }
       ];
       this.loaded=true;
     },2000);
 
-    this.showDetails = false;
+    this.showDetails = true;
+    this.setEnableButton();
+    this.setShowExtended();
   }
 
-  addUser(user : User){
-    this.users.push(user);
+  /* addUser(){
+    this.user.isActive = true;
+    this.user.registerd = new Date();
+    this.users.unshift(this.user);
+    this.user = {
+      firstName : '',
+    lastName : '',
+    age : null,
+    email : '',
+    }
+  } */
+
+  setEnableButton(){
+    this.enableButton = {
+      'btn-success' : this.enableAdd
+    }
+  }  
+
+  setShowExtended(){
+    this.showextended = {
+      'padding-top' : this.showDetails ? '0px':'40px',
+    }
+  }
+
+  toggleHide(user : User) {
+    user.hide = !user.hide;
+  }
+
+  onSubmit({value, valid}:{value : User,valid : boolean}){
+    if(!valid){
+      console.log("Form is not valid");
+    }else{
+      value.isActive = true;
+      value.registerd = new Date();
+      value.hide = true;
+      this.users.unshift(value);
+      this.form.reset();
+    }
   }
 
 }

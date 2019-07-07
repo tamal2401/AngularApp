@@ -24,11 +24,7 @@ export class UserComponent implements OnInit{
             firstName : 'Tamal',
             lastName : 'Das',
             age : 25,
-            address : {
-                street : 'selimpur lane',
-                city : 'kolkata',
-                pin : 700031
-            }
+            email : 'tamal.das@citi.com',
         }
     }
 }
