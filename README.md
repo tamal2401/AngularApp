@@ -8,8 +8,8 @@ npm install -g @angular/cli
 
 ## Generating new project and starting the server
 
-ng new projectName
-cd projectName
+ng new projectName :: 
+cd projectName ::
 ng serve
 
 ## Creating new Component
