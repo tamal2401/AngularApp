@@ -8,16 +8,16 @@ npm install -g @angular/cli
 
 ## Generating new project and starting the server
 
-ng new projectName /n
-cd projectName /n
+ng new projectName
+cd projectName
 ng serve
 
 ## Creating new Component
 
-ng g c componentName /n
-or /n
-ng g c componentName --spec=false (to not including the spec.ts file) /n
-or /n
+ng g c componentName
+or 
+ng g c componentName --spec=false (to not including the spec.ts file) 
+or 
 ng g c componentName --modeule=app (to specify under which module the component should be created)
 
 ## Development server
